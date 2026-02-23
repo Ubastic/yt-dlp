@@ -240,6 +240,7 @@ class BilibiliBaseIE(InfoExtractor):
             'text': traverse_obj(reply, ('content', 'message')),
             'timestamp': reply.get('ctime'),
             'parent': reply.get('parent') or 'root',
+            'like_count': int_or_none(reply.get('like')),
         }
         for children in map(self._get_all_children, traverse_obj(reply, ('replies', ...))):
             yield from children
